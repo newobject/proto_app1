@@ -4,12 +4,10 @@ class UserSessionsController < ApplicationController
   # omniauth callback method 
   def create
     omniauth = env['omniauth.auth']
-    logger.debug "+++ #{omniauth}"
 
     user = User.find_by_uid(omniauth['uid'])
     if not user
-      # New user registration
-    user = User.create!(:uid => omniauth['uid'])
+      user = User.create!(:uid => omniauth['uid'])
     end
 
     # Currently storing all the info
@@ -22,7 +20,6 @@ class UserSessionsController < ApplicationController
   # Omniauth failure callback
   def failure
     flash[:notice] = params[:message]
-
   end
 
   # logout - Clear our rack session BUT essentially redirect to the provider
