@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require bootstrap/2.0.2/bootstrap-dropdown
+//= require bootstrap/2.0.2/bootstrap-collapse
