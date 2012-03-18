@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Monitor</title>
+  <title>App1</title>
   <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -16,8 +17,26 @@
         </a>
         <%= link_to 'Protal', root_path, :class => 'brand' %>
         <div class="nav-collapse">
+					<ul class="nav">
+						<% apps_from_protal.each do |app| %>
+							<li>
+								<a href="<%= app['domain'] %>"><%= app['name'] %></a>
+							</li>
+						<% end %>
+					</ul>
           <ul class="nav pull-right">
-
+						<% if user_signed_in? %>
+              <li id="user_dropdown" class="dropdown">
+                <a href="#user_dropdown" class="dropdown-toggle", data-toggle="dropdown">
+                  <%= current_user.email %>
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to 'Setting', '/users/edit' %></li>
+                  <li><%= link_to 'Sign out', '/users/sign_out', :method => 'delete' %></li>
+                </ul>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -25,9 +44,26 @@
   </div>
 
   <div class="container">
-    <%= yield %>
+		<div class="row">
+			<div class="span3">
+				<% nav_nodes_from_protal.each do |app_name, nav_nodes| %>
+					<ul class="nav nav-list">
+						<li class="nav-header">
+							<%= app_name %>
+						</li>
+						<% nav_nodes.each do |nav_node| %>
+							<li>
+								<a href="<%= nav_node['url'] %>"><%= nav_node['name'] %></a>
+							</li>
+						<% end %>
+					</ul>
+				<% end %>
+			</div>
+			<div class="span9">
+		    <%= yield %>
+			</div>
+		</div>
   </div>
 
-  <%= javascript_include_tag "application" %>
 </body>
 </html>

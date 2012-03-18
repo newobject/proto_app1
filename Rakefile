@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-ProtoMonitor::Application.load_tasks
+ProtoApp1::Application.load_tasks

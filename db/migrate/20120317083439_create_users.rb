@@ -2,7 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.string :uid, :null => false, :default => ''
-      t.string :status
+      t.string :email
       t.timestamps
     end
   end

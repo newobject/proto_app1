@@ -1,6 +1,7 @@
-ProtoMonitor::Application.routes.draw do
+ProtoApp1::Application.routes.draw do
   # omniauth
   match '/auth/proto/callback', :to => 'user_sessions#create'
+  match '/home', :to => 'home#index'
   root :to => 'home#index'
 
 

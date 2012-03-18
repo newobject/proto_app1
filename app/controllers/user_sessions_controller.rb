@@ -4,10 +4,10 @@ class UserSessionsController < ApplicationController
   # omniauth callback method 
   def create
     omniauth = env['omniauth.auth']
-
+    
     user = User.find_by_uid(omniauth['uid'])
-    if not user
-      user = User.create!(:uid => omniauth['uid'])
+    unless user
+      user = User.create!(:uid => omniauth['uid'], :email => omniauth['extra']['raw_info']['info']['email'])
     end
 
     # Currently storing all the info
