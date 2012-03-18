@@ -2,6 +2,7 @@ ProtoApp1::Application.routes.draw do
   # omniauth
   match '/auth/proto/callback', :to => 'user_sessions#create'
   match '/home', :to => 'home#index'
+  match '/logout', :to => 'user_sessions#destroy'
   root :to => 'home#index'
 
 
