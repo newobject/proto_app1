@@ -25,11 +25,9 @@ class UserSessionsController < ApplicationController
   # logout - Clear our rack session BUT essentially redirect to the provider
   # to clean up the Devise session from there too !
   def destroy
-    puts = "===================: bbbb0"
-    logout_from_protal
-    puts = "===================: bbbb1"
     session[:user_id] = nil
-    puts = "===================: bbbb2"
+
+    #TODO logout from protal
     redirect_to root_path
   end
 end

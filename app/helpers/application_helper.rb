@@ -37,19 +37,4 @@ module ApplicationHelper
     JSON.parse(response.body)
   end
   
-  def logout_from_protal
-    puts = "===================: here1"
-    return [] unless user_signed_in?
-    puts = "===================: here2"
-    
-    uri = URI.parse("http://localhost:3000/users/sign_out")
-    puts = "===================: here3"
-    http = Net::HTTP.new(uri.host, uri.port)
-    puts = "===================: here4"
-    req = Net::HTTP::Delete.new("/users/sign_out")
-    puts = "===================: here5"
-    res = http.request(req)
-    puts = "===================: here6"
-    puts = "===================: #{res}"
-  end
 end
